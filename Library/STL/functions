@@ -1,0 +1,5 @@
+FIND max of a vector:
+    *max_element(a.begin(), a.end())
+
+FIND max of n elements:
+    
