@@ -2,6 +2,13 @@
 ind = 0
 not_last index.
 
+full_count - 2
+
+full_count - 1
+xf = 20
+mf = 19
+totf = 100
+
 ind = 1
 not_last index.
 
@@ -14,29 +21,25 @@ ind = 2
 last Index!
 xr = 1
 mr = 1
-totr = 10
+totr = 3
 x2 = 1
 m2 = 1
-tot2 = 10
-xr = 20
-mr = 19
-totr = 100
+tot2 = 3
+xr = 14
+mr = 13
+totr = 33
 
-x1 = 20
-m1 = 19
-tot1 = 100
-
-full_count - 2
-
-full_count - 1
-xr = 140
-mr = 119
-totr = 200
+x2 = 14
+m2 = 13
+tot2 = 33
+xr = 154
+mr = 132
+totr = 233
 
 
 
-x_ans = 140
-m_ans = 119
-tot_ans = 200
-140
+x_ans = 154
+m_ans = 132
+tot_ans = 233
+154
 Total Time: 0.000
