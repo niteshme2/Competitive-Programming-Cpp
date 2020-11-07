@@ -47,21 +47,37 @@ struct compare {
 
 
 void solve(){
+    int N,K,P,A,B;
+    cin>>N>>K>>P;
+    vii pos(N, make_pair(0,0));
+    f(i,0,N) cin>>pos[i].first;
+    f(i,0,N) pos[i].second = i+1;
+    vii f_pairs(P);
+    f(i, 0, P) cin>>f_pairs[i].first>>f_pairs[i].second;
+
+    vector<int> groups(N+1, 0);
+    sort(pos.begin(), pos.end());
+    int group_count = 1;
+    groups[pos[0].second] = 1;
+    f(i, 1, N){
+        if(pos[i].first - pos[i-1].first > K) group_count++;
+        groups[pos[i].second] = group_count;    
+    }
+
+    //f(i, 1, N+1) cout<<groups[i]<<" ";cout<<endl;
+
+    f(i, 0, P){
+        if(groups[f_pairs[i].first] == groups[f_pairs[i].second]) cout<<"Yes"<<endl;
+        else cout<<"No"<<endl;
+    }
 
 }
 
 int main(){
     ios_base::sync_with_stdio(false); cin.tie(NULL);
-    int T;
-    cin>>T;
-    while(T--){
-        clock_t z = clock();
-        solve();
-        debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
-    }    
-}
-
-
-
-
     
+    clock_t z = clock();
+    solve();
+    //debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
+        
+}

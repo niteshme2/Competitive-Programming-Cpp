@@ -1,5 +1,39 @@
+
+::::::::::::::::::::::::::::::::::  VECTOR  ::::::::::::::::::::::::::::::::::
+
 FIND max of a vector:
     *max_element(a.begin(), a.end())
 
+
 FIND max of n elements:
     
+
+
+RESET all values in vector - arr to val:
+    void memset(vec, val, sizeof(vec))
+
+
+REVERSE a vector:
+    reverse(vec.begin(),vec.end());  
+
+
+
+ERASE/REMOVE some elements of a vector:
+    vec.erase(ind);
+    vec.erase(start_ind, end_ind);
+
+
+REMOVE all elements from vector:
+    vec.clear():
+
+
+
+
+
+
+::::::::::::::::::::::::::::::::::  BINARY_SEARCH  ::::::::::::::::::::::::::::::::::
+
+
+
+::::::::::::::::::::::::::::::::::  -  ::::::::::::::::::::::::::::::::::
+

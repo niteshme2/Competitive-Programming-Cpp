@@ -6,26 +6,23 @@ int rand(int a, int b) {
 }
 
 int main(int argc, char* argv[]) {
-    srand(atoi(argv[1])); // atoi(s) converts an array of chars to int
-    int t = rand(1000, 1000);
-    cout<<t<<endl;
-    while(t--){
-        int n = rand(1000, 1000);
-        int m = rand(1000, 1000);
-        cout<<n<<" ";
-        for(int i=0;i<n;i++){
-            char temp = 'a' + rand(0, 25)%26;
-            cout<<temp;
-
-        }
-        cout<<endl;
-        cout<<m<<" ";
-        for(int i=0;i<m;i++){
-            char temp = 'a' + rand(0, 25)%26;
-            cout<<temp;
-        }
-        cout<<endl;
+    srand(atoi(argv[1])); // atoi(s ) converts an array of chars to int
+    int N = rand(1, 100);
+    int K = rand(0,100);
+    int P = rand(1, 100);
+    cout<<N<<" "<<K<<" "<<P<<endl;
+    
+    for(int i=0;i<N;i++){
+        cout<<rand(1,100)<<" ";
     }
+    cout<<endl;
+
+    for(int i=0;i<P;i++){
+        cout<<rand(1,N)<<" "<<rand(1, N)<<endl;
+    }
+
+    
+
     
     puts("");
 }
