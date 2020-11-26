@@ -11,8 +11,8 @@ using namespace std;
 #define ll long long
 #define pii pair<int, int>
 #define vi vector<int>
-#define vvi vector<int>
 #define vii vector<pair<int, int>>
+#define vvi vector< vector<int> > 
 
 
 const int MOD = 1000000007;
@@ -48,6 +48,39 @@ struct compare {
 
 
 void solve(){
+    int N, M;
+    cin>>N>>M;
+    vvi clean(N, vector<int>(M, 0));
+    vvi is_clean(N, vector<int>(M, 0));
+    f(i, 0, N) f(j, 0, M) cin>>clean[i][j];
+
+    
+
+    
+
+    f(j, 0, M) is_clean[0][j] = 1;
+    
+
+    f(i, 1, N) f(j, 0, M){
+        
+        int left, middle, right;
+        left = j-1 >= 0 ? clean[i-1][j-1] : 0;
+        right = j+1 < M ? clean[i-1][j+1] : 0;
+        middle = clean[i-1][j];
+        
+        
+        is_clean[i][j] = (clean[i][j] > left && clean[i][j] > middle && clean[i][j] > right) ? 1 : 0;
+        clean[i][j] = max({clean[i][j], left, middle, right});
+    }
+
+    f(i, 0, N){
+        f(j, 0, M){
+            cout<<is_clean[i][j];
+        }
+        cout<<endl;
+    }
+
+
 
 }
 
@@ -58,7 +91,7 @@ int main(){
     while(T--){
         clock_t z = clock();
         solve();
-        debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
+        //debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
     }    
 }
 

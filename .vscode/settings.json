@@ -2,5 +2,9 @@
     "files.associations": {
         "ostream": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "git.autoRepositoryDetection": false,
+    "git.decorations.enabled": false,
+    "git.enabled": false,
+    "git.enableStatusBarSync": false
 }

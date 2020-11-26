@@ -1,5 +1,5 @@
 for((i = 1; ; ++i)); do
-    echo $i
+    echo case_$i
     ./gen.out $i > int
     ./a.out < int > out1
     ./brute.out < int > out2
