@@ -11,7 +11,6 @@ using namespace std;
 #define ll long long
 #define pii pair<int, int>
 #define vi vector<int>
-#define vl vector<long long>
 #define vii vector<pair<int, int>>
 
 
@@ -50,47 +49,39 @@ struct compare {
 void solve(){
     int n;
     cin>>n;
-    vl arr(n,0);
-    f(i, 0, n) cin>>arr[i];
-
-    vii sum_range(n, make_pair(0,0));
-    vl sum(n, 0);
-
-    sum[0] = arr[0];
-    f(i, 1, n){
-        if(sum[i-1] >= 0){
-            sum[i] = sum[i-1] + arr[i];
-            sum_range[i] = make_pair(sum_range[i-1].first, i);
-        } 
-        else{
-            sum[i] = arr[i];
-            sum_range[i] = make_pair(i, i);
-        }
-    }
-
-    //f(i, 0, n) cout<<sum[i]<<" ";cout<<endl;
-    //f(i, 0, n) cout<<sum_range[i].first<<","<<sum_range[i].second<<"__";cout<<endl;
-
-    vii max_indices;
-
-    ll max_sum = *max_element(sum.begin(), sum.end());
-
+    vi A(n), B(n);
+    int A_goals = 0, B_goals = 0;
+    string temp;
+    cin>>temp;
     f(i, 0, n){
-        if(sum[i] == max_sum){
-            max_indices.push_back(sum_range[i]);
+        A[i] = temp[2*i] - '0';
+        A_goals += A[i];
+        if(A_goals > B_goals + n - i){
+            cout << 2*i+1 << endl;
+            break;
+        }
+        if( B_goals > A_goals + n - i - 1){
+            cout << 2*i+1 << endl;
+            break;
+        }
+
+        
+        B[i] = temp[2*i+1] - '0';
+        B_goals += B[i];
+
+        if(A_goals > B_goals + n - i - 1){
+            cout << 2*i+2 << endl;
+            break;
+        }
+        if( B_goals > A_goals + n - i - 1){
+            cout << 2*i+2 << endl;
+            break;
         }
     }
-
-    int min = 0;
-    f(i, 0, max_indices.size()){
-        if(max_indices[i].first != max_indices[i].second){
-            int sub_array_min = *min_element(arr.begin()+max_indices[i].first, arr.begin()+max_indices[i].second);
-            if(sub_array_min < 0) min = min < sub_array_min  ? min : sub_array_min;
-        }
+    if(A_goals == B_goals){
+        cout << 2*n << endl;
     }
-
-    //cout<<min<<endl;
-    cout<<max_sum - min<<endl;
+    
 }
 
 int main(){
@@ -100,7 +91,7 @@ int main(){
     while(T--){
         clock_t z = clock();
         solve();
-        //debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
+        debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
     }    
 }
 

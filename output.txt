@@ -1,1 +1,4 @@
-/bin/bash: line 1:  1248 Segmentation fault      (core dumped) ./gen.out < input.txt &> output.txt
+3
+Total Time: 0.000
+6
+Total Time: 0.000
