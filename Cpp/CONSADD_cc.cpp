@@ -9,10 +9,10 @@ using namespace std;
 #define fri(i, m, n) for(int i=m;i>=n;i--)
 
 #define ll long long
-#define int long long int
 #define pii pair<int, int>
 #define vi vector<int>
-#define vii vector<pair<int, int>>
+#define vvi vector<vector<int>>
+#define vpii vector<pair<int, int>>
 
 
 const int MOD = 1000000007;
@@ -48,30 +48,27 @@ struct compare {
 
 
 void solve(){
-    int n, r;
-    cin>>n>>r;
+    int R, C, X;
+    cin>>R>>C>>X;
 
-    vi arr(n, 0);
-    f(i, 0, n) cin>>arr[i];
+    vvi mat1(R, vector<int>(C)), mat2(R, vector<int>(C));
 
-    fr(i, n-1, 0){
-        arr[i] = max(r, arr[i]);
-        arr[i-1] = min(r, arr[i] + arr[i-1]);
-    }
+    f(i, 0, R) f(j, 0, C) cin>>mat1[i][j];
+    f(i, 0, R) f(j, 0, C) cin>>mat2[i][j];
 
-    cout<<arr[0]<<endl;
+    // f(i, 0, R){ f(j, 0, C) cout<<mat1[i][j]<<" ";cout<<endl;}
+    // cout<<endl;
+    // f(i, 0, R){ f(j, 0, C) cout<<mat2[i][j]<<" ";cout<<endl;}
 
     
 
 
-
-
 }
 
-int32_t main(){
+int main(){
     ios_base::sync_with_stdio(false); cin.tie(NULL);
     int T;
-    T=1;
+    cin>>T;
     while(T--){
         clock_t z = clock();
         solve();

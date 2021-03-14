@@ -9,7 +9,6 @@ using namespace std;
 #define fri(i, m, n) for(int i=m;i>=n;i--)
 
 #define ll long long
-#define int long long int
 #define pii pair<int, int>
 #define vi vector<int>
 #define vii vector<pair<int, int>>
@@ -48,30 +47,54 @@ struct compare {
 
 
 void solve(){
-    int n, r;
-    cin>>n>>r;
+    int n;
+    cin>>n;
+    vi brackets(n);
+    f(i, 0, n) cin>>brackets[i];
 
-    vi arr(n, 0);
-    f(i, 0, n) cin>>arr[i];
-
-    fr(i, n-1, 0){
-        arr[i] = max(r, arr[i]);
-        arr[i-1] = min(r, arr[i] + arr[i-1]);
+    int ind = 0, max_depth=0, max_len=0, depth_ind = -1, len_ind = -1;
+    while(ind < n){
+        int curr_depth=0, curr_len=0, start_ind=ind;
+        stack<int> stk;
+        stk.push(brackets[ind]);
+        curr_depth = 1;
+        curr_len = 1;
+        if(curr_depth > max_depth){
+            max_depth = curr_depth;
+            depth_ind = ind;
+        }
+        ind++;
+        while( ind < n && !stk.empty() ){
+            if( stk.top() != brackets[ind]){
+                stk.pop();
+                ind++;
+                curr_depth--;
+            }
+            else{
+                stk.push(brackets[ind]);
+                curr_depth++;
+                if(curr_depth > max_depth){
+                    max_depth = curr_depth;
+                    depth_ind = ind;
+                }
+                ind++;
+            }
+            curr_len++;
+        }
+        if(curr_len > max_len){
+            max_len = curr_len;
+            len_ind = start_ind;
+        }
     }
 
-    cout<<arr[0]<<endl;
-
-    
-
-
-
+    cout<<max_depth<<" "<<depth_ind+1<<" "<<max_len<<" "<<len_ind+1<<endl;
 
 }
 
-int32_t main(){
+int main(){
     ios_base::sync_with_stdio(false); cin.tie(NULL);
     int T;
-    T=1;
+    T = 1;
     while(T--){
         clock_t z = clock();
         solve();

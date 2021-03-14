@@ -7,31 +7,25 @@ int rand(int a, int b) {
     return a + rand() % (b - a + 1);
 }
 
+double randd(double min, double max) {
+    return (max - min) * ( (double)rand() / (double)RAND_MAX ) + min;
+}
+
 int main(int argc, char* argv[]) {
     srand(atoi(argv[1])); // atoi(s ) converts an array of chars to int
-    int T = rand(1, 5);
+    int T = rand(1, 1);
     T = 1;
+    //cout<<T<<endl;
+    int max_num = 9;
     while(T--){
-        int N = rand(1, 20);
-        int Q = rand(1, 20);
-
-        cout<<N<<" "<<Q<<endl;
-
-        for(int i=0;i<N;i++){
-            cout<<rand(1, 20)<<" ";
-        } 
-        cout<<endl;
-        for(int i=0;i<Q;i++){
-            int temp = rand(1,2);
-            cout<<temp<<" ";
-            if(temp==1){
-                cout<<rand(1,N)<<" "<<rand(1, 20)<<endl;
-            }
-            else{
-                cout<<rand(1,N)<<endl;
-            }
+        int N, R;
+        N = rand(1, 10);
+        R = rand(1, 10);
+        cout<<N<<" "<<R<<endl;
+        while(N--){
+            cout<<rand(1, 10)<<" ";
         }
-        cout<<endl;   
+
     }
     
     

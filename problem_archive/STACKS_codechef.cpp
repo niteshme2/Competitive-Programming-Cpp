@@ -9,7 +9,6 @@ using namespace std;
 #define fri(i, m, n) for(int i=m;i>=n;i--)
 
 #define ll long long
-#define int long long int
 #define pii pair<int, int>
 #define vi vector<int>
 #define vii vector<pair<int, int>>
@@ -48,30 +47,34 @@ struct compare {
 
 
 void solve(){
-    int n, r;
-    cin>>n>>r;
-
-    vi arr(n, 0);
-    f(i, 0, n) cin>>arr[i];
-
-    fr(i, n-1, 0){
-        arr[i] = max(r, arr[i]);
-        arr[i-1] = min(r, arr[i] + arr[i-1]);
-    }
-
-    cout<<arr[0]<<endl;
-
+    int N;
+    cin>>N;
+    vi arr(N);
+    f(i, 0, N) cin>>arr[i];
     
-
-
-
-
+    
+    vi res = {arr[0]};
+    //cout<<N<<endl;
+    for(int i=1;i<N;i++){
+        //cout<<i<<endl;
+        auto it = upper_bound(res.begin(), res.end(), arr[i]);
+        
+        //cout<< res.end() - it<<endl;
+        
+        if(it == res.end()) res.push_back(arr[i]);
+        
+        else *it = arr[i]; 
+        
+    }
+    
+    cout<<res.size()<<" ";
+    for(auto x: res) cout<<x<<" ";cout<<endl;
 }
 
-int32_t main(){
+int main(){
     ios_base::sync_with_stdio(false); cin.tie(NULL);
     int T;
-    T=1;
+    cin>>T;
     while(T--){
         clock_t z = clock();
         solve();

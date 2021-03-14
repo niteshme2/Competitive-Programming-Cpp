@@ -48,34 +48,63 @@ struct compare {
 
 
 void solve(){
-    int n, r;
-    cin>>n>>r;
+    int N, Q;
+    cin>>N>>Q;
+    vi mot(N, 0), sat(N, 0);
+    f(i, 0, N) cin>>mot[i];
+    f(i, 0, N) cin>>sat[i];
 
-    vi arr(n, 0);
-    f(i, 0, n) cin>>arr[i];
+    vi queries(Q, 0);
+    f(i, 0, Q) cin>>queries[i];
 
-    fr(i, n-1, 0){
-        arr[i] = max(r, arr[i]);
-        arr[i-1] = min(r, arr[i] + arr[i-1]);
+    sort(mot.begin(), mot.end());
+    sort(sat.begin(), sat.end());
+
+    int max_query = *max_element(queries.begin(), queries.end());
+    vi sums(max_query+1, -1);
+
+    vi min_index(N, 0);
+
+    priority_queue<pii> pq;
+
+    f(i, 0, N) pq.push( make_pair(-1 * (mot[i] + sat[min_index[i]]), i ));
+
+    // while(pq.size()){
+    //     cout<<-1*pq.top().first<<" "<<pq.top().second<<endl;
+    //     pq.pop();
+    // }
+    // cout<<endl;
+
+    int index = 1;
+    while(index < sums.size()){
+        sums[index] = -1* pq.top().first;
+        
+        int mot_ind = pq.top().second;
+    
+        min_index[mot_ind]++;
+        //f(i, 0, sums.size()) cout<<sums[i]<<" ";cout<<endl;
+        pq.push(  make_pair(-1 * (mot[mot_ind] + sat[min_index[mot_ind]]), mot_ind ) );
+        pq.pop();
+        index++;
+    }
+    //cout<<endl;
+
+    for(auto q: queries){
+        cout<<sums[q]<<endl;
     }
 
-    cout<<arr[0]<<endl;
-
     
-
-
-
 
 }
 
 int32_t main(){
     ios_base::sync_with_stdio(false); cin.tie(NULL);
     int T;
-    T=1;
+    cin>>T;
     while(T--){
         clock_t z = clock();
         solve();
-        debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
+        //debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
     }    
 }
 
