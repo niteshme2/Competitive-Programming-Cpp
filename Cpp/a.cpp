@@ -1,89 +1,72 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 typedef long long int ll;
 
-void solve()
-{
-    int n,x,y,cnt=0,ans=0;
-    string s;
-    cin>>x>>y>>s;
-    int i,j;
-    n=s.length();
-    for(i=0;i<n;i++)
-    {
-        if(s[i]=='?')
-            cnt++;
-    }
-    if(cnt==n || cnt==n-1)
-    {
-        cout<<"0";
-        return;
-    }
-    int k;
-    for(k=0;k<n-1;k++)
-    {
-        if(s[k]!='?')
-            break;
-    }
-    if(k==0)
-        k++;
-    i=k;
-    while(i<n-1)
-    {
-        if(s[i]=='?')
-        {
-            if(s[i-1]!=s[i+1] && s[i+1]!='?')
-            {
-                if(s[i-1]=='J')
-                    ans+=y;
-                else
-                    ans+=x;
-            }
-            else if(s[i-1]!=s[i+1] && s[i+1]=='?')
-            {
-                j=i+2;
-                while(s[j]=='?' && j<n)
-                {
-                    j++;
-                }
-                if(j==n)
-                {
-                    break;
-                }
-                if(s[i-1]!=s[j])
-                {
-                    if(s[i-1]=='J')
-                        ans+=y;
-                    else
-                        ans+=x;
-                }
-                i=j;
-            }
-        }
-        i++;
-    }
-    for(i=0;i<n-1;i++)
-    {
-        if(s[i]=='J' && s[i+1]=='C')
-            ans+=y;
-        else if(s[i]=='C' && s[i+1]=='J')
-            ans+=x;
-    }
-    cout<<ans;
-
-
-}
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL); cout.tie(NULL);
-    ll t;
-    cin>>t;
-    for(int j=1;j<=t; j++)
-    {
-        cout<<"Case #"<<j<<": ";
-        solve();
-        cout<<endl;
+    ll t,n,q;
+    cin>>t>>n>>q;
+    while(t-- !=0){
+    vector<ll> a;
+    
+    cout<<"1 2 3"<<endl;
+    
+    ll size=3;
+    ll p;
+    cin>>p;
+    if(p==2){
+        a.push_back(1);
+        a.push_back(2);
+        a.push_back(3);
+        
     }
+    else if(p==3){
+        a.push_back(1);
+        a.push_back(3);
+        a.push_back(2);
+    }
+    else{
+        a.push_back(2);
+        a.push_back(1);
+        a.push_back(3);
+    }
+    for(ll i=4;i<=(n);i++){
+        ll u=0;
+        ll v=size-1;
+        while(u<v){
+            ll mid=u+((v-u)/2);
+            cout<<a[mid]<<" "<<a[mid+1]<<" "<<(i)<<endl;
+            cin>>p;
+            if(p==a[mid]){
+                v=mid;
+            }
+            else if(p==a[mid+1]){
+                
+                u=mid+1;
+            }
+            else{
+                a.insert(a.begin()+mid+1,i);
+                size++;
+                break;
+            }
+        }
+        if(size!=i){
+            if(u==0){
+                a.insert(a.begin(),i);
+            }
+            else{
+                a.push_back(i);
+            }
+            size++;
+        }
+    }
+    for(auto zzz: a){
+        cout<<zzz<<" ";
+    }
+    cout<<endl;
+    cin>>p;
+    if(p==-1){
+        break;
+    }
+}
 }
