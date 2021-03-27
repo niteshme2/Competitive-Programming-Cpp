@@ -45,12 +45,11 @@ struct compare {
 
 
 
-void solve(){
-    int n, q;
-    cin>>n>>q;
+void solve(int n, int q){
+    
 
     vi arr;
-
+    cout<<"1 2 3"<<endl;
     int s = 3, med;
     cin>>med;
 
@@ -69,7 +68,7 @@ void solve(){
         arr.push_back(1);
         arr.push_back(3);
     }
-    f(i, 4, n){
+    f(i, 4, n+1){
         int beg = 0;
         int end = s - 1;
         while(beg<end){
@@ -106,9 +105,11 @@ int32_t main(){
 ios_base::sync_with_stdio(false); cin.tie(NULL);
     int T;
     cin>>T;
+    int n, q;
+    cin>>n>>q;
     while(T--){
         clock_t z = clock();
-        solve();
+        solve(n, q);
         debug("Total Time: %.3f\n", (double)(clock() - z) / CLOCKS_PER_SEC);
     }    
 }
