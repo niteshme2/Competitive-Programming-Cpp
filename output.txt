@@ -1,6 +1,8 @@
 Total Time: 0.000
 Total Time: 0.000
 Total Time: 0.000
-Case #2: 6
-Case #3: 2
-Case #4: 13
+Total Time: 0.000
+Case #1: 5
+Case #2: 10
+Case #3: 1
+Case #4: 0

@@ -1,55 +1,89 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+typedef long long int ll;
 
-void reverse(int i, int j, int* a){
-	int x = i;
-	int y = j;
-	
-	while(x<=y)
-	{
-		swap(a[x], a[y]);
-		x++;
-		y--;
-	}
+void solve()
+{
+    int n,x,y,cnt=0,ans=0;
+    string s;
+    cin>>x>>y>>s;
+    int i,j;
+    n=s.length();
+    for(i=0;i<n;i++)
+    {
+        if(s[i]=='?')
+            cnt++;
+    }
+    if(cnt==n || cnt==n-1)
+    {
+        cout<<"0";
+        return;
+    }
+    int k;
+    for(k=0;k<n-1;k++)
+    {
+        if(s[k]!='?')
+            break;
+    }
+    if(k==0)
+        k++;
+    i=k;
+    while(i<n-1)
+    {
+        if(s[i]=='?')
+        {
+            if(s[i-1]!=s[i+1] && s[i+1]!='?')
+            {
+                if(s[i-1]=='J')
+                    ans+=y;
+                else
+                    ans+=x;
+            }
+            else if(s[i-1]!=s[i+1] && s[i+1]=='?')
+            {
+                j=i+2;
+                while(s[j]=='?' && j<n)
+                {
+                    j++;
+                }
+                if(j==n)
+                {
+                    break;
+                }
+                if(s[i-1]!=s[j])
+                {
+                    if(s[i-1]=='J')
+                        ans+=y;
+                    else
+                        ans+=x;
+                }
+                i=j;
+            }
+        }
+        i++;
+    }
+    for(i=0;i<n-1;i++)
+    {
+        if(s[i]=='J' && s[i+1]=='C')
+            ans+=y;
+        else if(s[i]=='C' && s[i+1]=='J')
+            ans+=x;
+    }
+    cout<<ans;
+
+
 }
 
-
-int main(){
-	ios_base::sync_with_stdio(false), cin.tie(nullptr);
-	
-	int t;
-	cin>>t;
-	
-	int caseNo = 0;
-	
-	while(t--){
-		int n;
-		cin>>n;
-		int a[n];
-		
-		for(int i=0;i<n;i++){
-			cin>>a[i];
-		}
-		
-		long long ans = 0;
-		
-		for(int i=0;i<n-1;i++){
-			int minIndex = n-1;
-			int minTerm = INT_MAX;
-			
-			for(int j=n-1; j>=i;j--){
-                if(a[j] < minTerm){
-                    minTerm = a[j];
-                    minIndex = j;
-                }
-            }
-
-            reverse(i, minIndex, a);
-            ans += minIndex - i + 1;
-		}
-
-        caseNo++;
-        cout<< "Case #" << caseNo << ':' << " " << ans << endl;
-	}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); cout.tie(NULL);
+    ll t;
+    cin>>t;
+    for(int j=1;j<=t; j++)
+    {
+        cout<<"Case #"<<j<<": ";
+        solve();
+        cout<<endl;
+    }
 }

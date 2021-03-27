@@ -63,11 +63,11 @@ void solve(int cs){
 
     int res = 0;
 
-    fri(i, n-1, 0){
+    for(int i=0;i<n-1;i++){
         int mn_i = n-1;
         int mn_t = INT_MAX;
 
-        fri(j, n-1, i){
+        for(int j=n-1; j>=i;j--){
             if(arr[j] < mn_t){
                 mn_t = arr[j];
                 mn_i = j;
